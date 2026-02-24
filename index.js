@@ -12,7 +12,7 @@ const client = new Client({
 const TOKEN = process.env.TOKEN;
 
 // 🔵 PON AQUÍ EL ID DEL CANAL WELCOME
-const WELCOME_CHANNEL_ID = "PE1475909897265877103";
+const WELCOME_CHANNEL_ID = "1475909897265877103";
 
 const frases = [
     "¡Miren quién llegó",
