@@ -5,6 +5,9 @@ const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
+    
     ]
 });
 
@@ -30,6 +33,21 @@ client.on("guildMemberAdd", (member) => {
     const fraseRandom = frases[Math.floor(Math.random() * frases.length)];
 
     canal.send(`➡️ ${fraseRandom}, ${member}!`);
+});
+
+client.on("messageCreate", async (message) => {
+  // Ignorar mensajes del propio bot
+  if (message.author.bot) return;
+
+  // Verificar que esté en el canal de música
+  if (message.channel.name === "canciones-del-canal") {
+
+    // Si el mensaje tiene archivos adjuntos
+    if (message.attachments.size > 0) {
+      await message.react("🎵");
+      await message.react("☀️");
+    }
+  }
 });
 
 client.once("clientReady", () => {
